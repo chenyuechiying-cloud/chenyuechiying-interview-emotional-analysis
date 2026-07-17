@@ -1,0 +1,37 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+*.egg
+.venv/
+venv/
+
+# === Java / Maven ===
+target/
+*.class
+*.jar
+*.war
+
+# === IDE ===
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# === Generated Data ===
+crawler/generated_reviews.json
+crawler/cleaned_reviews.csv
+analysis/output/*.png
+analysis/output/*.md
+
+# === Config with secrets ===
+# (keep templates but not actual keys)

@@ -1,0 +1,49 @@
+# ============================================================
+# 用户评论情感分析系统 — Spring Boot 配置
+# 请根据实际环境修改数据库密码和 DeepSeek API Key
+# ============================================================
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sentiment-server
+
+  # === MySQL 数据源配置 ===
+  datasource:
+    url: jdbc:mysql://localhost:3306/sentiment_analysis?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:your_password_here}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # === JPA / Hibernate 配置 ===
+  jpa:
+    hibernate:
+      ddl-auto: none           # 使用 sql/init.sql 管理表结构，不做自动校验
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 100     # 批量操作优化
+
+# === DeepSeek API 配置 ===
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY:sk-your-api-key-here}
+  base-url: https://api.deepseek.com
+  model: deepseek-chat
+  timeout-seconds: 60
+
+# === 异步线程池配置 ===
+async:
+  core-pool-size: 8
+  max-pool-size: 16
+  queue-capacity: 200
+
+# === 日志配置 ===
+logging:
+  level:
+    root: INFO
+    com.sentiment: DEBUG
